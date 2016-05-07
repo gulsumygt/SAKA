@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PojectDatabase" Class="SAKADataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HP-BILGISAYAR;Initial Catalog=PojectDatabase;Integrated Security=True" SettingsObjectName="SAKA.Bussiness.Properties.Settings" SettingsPropertyName="PojectDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.KPI" Member="KPIs">
+    <Type Name="KPI">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="TARGET" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="UNIT" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="THRESHOLD_TYPE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="THRESHOLD" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="DIRECTION" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CREATİON_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MODIFICATION_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AKTIF" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PERIOD" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CONNSTRING" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="KPI_KPI_CALCULATION_LOG" Member="KPI_CALCULATION_LOGs" ThisKey="ID" OtherKey="KPI_ID" Type="KPI_CALCULATION_LOG" />
+      <Association Name="KPI_KPI_VALUE" Member="KPI_VALUEs" ThisKey="ID" OtherKey="KPI_ID" Type="KPI_VALUE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KPI_CALCULATION_LOG" Member="KPI_CALCULATION_LOGs">
+    <Type Name="KPI_CALCULATION_LOG">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="KPI_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SUCCESS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EXCEPTION_MESSAGE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="KPI_KPI_CALCULATION_LOG" Member="KPI" ThisKey="KPI_ID" OtherKey="ID" Type="KPI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KPI_VALUE" Member="KPI_VALUEs">
+    <Type Name="KPI_VALUE">
+      <Column Name="DATE" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VALUE" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="KPI_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TARGET" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="THRESHOLD_TYPE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="THRESHOLD" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Association Name="KPI_KPI_VALUE" Member="KPI" ThisKey="KPI_ID" OtherKey="ID" Type="KPI" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

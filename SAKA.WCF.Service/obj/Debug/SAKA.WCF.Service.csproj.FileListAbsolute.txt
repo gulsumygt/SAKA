@@ -1,0 +1,12 @@
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.WCF.Service.dll.config
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.WCF.Service.dll
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.WCF.Service.pdb
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.Bussiness.dll
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.DTO.dll
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.Service.Contract.dll
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.Bussiness.pdb
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.DTO.pdb
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\bin\SAKA.Service.Contract.pdb
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\obj\Debug\SAKA.WCF.Service.csprojResolveAssemblyReference.cache
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\obj\Debug\SAKA.WCF.Service.dll
+D:\KPIprojesi\SAKA\SAKA.WCF.Service\obj\Debug\SAKA.WCF.Service.pdb

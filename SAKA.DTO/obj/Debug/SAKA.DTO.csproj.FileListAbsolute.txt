@@ -1,0 +1,5 @@
+D:\KPIprojesi\SAKA\SAKA.DTO\bin\Debug\SAKA.DTO.dll
+D:\KPIprojesi\SAKA\SAKA.DTO\bin\Debug\SAKA.DTO.pdb
+D:\KPIprojesi\SAKA\SAKA.DTO\obj\Debug\SAKA.DTO.csprojResolveAssemblyReference.cache
+D:\KPIprojesi\SAKA\SAKA.DTO\obj\Debug\SAKA.DTO.dll
+D:\KPIprojesi\SAKA\SAKA.DTO\obj\Debug\SAKA.DTO.pdb

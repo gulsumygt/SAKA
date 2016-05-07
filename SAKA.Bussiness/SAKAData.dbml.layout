@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SAKAData">
+  <DataContextMoniker Name="/SAKADataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="5b6efdde-9843-485c-9abc-024b1c901406" absoluteBounds="0.75, 1.625, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/SAKADataDataContext/KPI" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a44251b2-f442-4316-8e1c-5b51be434c64" absoluteBounds="0.765, 2.085, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2c241869-044d-4ca5-b8dd-ccbd46bf416f" absoluteBounds="3.5, 1, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/SAKADataDataContext/KPI_CALCULATION_LOG" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f876cec6-b8a5-440a-9b8b-5c1e2d898647" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00ec26e7-ac51-426b-98b0-fc89ad9f836f" absoluteBounds="3.5, 3.625, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/SAKADataDataContext/KPI_VALUE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d91a985c-411c-48ed-b541-1d105b23bc0f" absoluteBounds="3.515, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.19794840494792); (3.5 : 2.19794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SAKADataDataContext/KPI/KPI_KPI_CALCULATION_LOG" />
+      <nodes>
+        <classShapeMoniker Id="5b6efdde-9843-485c-9abc-024b1c901406" />
+        <classShapeMoniker Id="2c241869-044d-4ca5-b8dd-ccbd46bf416f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.27965413411458); (3.5 : 4.27965413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SAKADataDataContext/KPI/KPI_KPI_VALUE" />
+      <nodes>
+        <classShapeMoniker Id="5b6efdde-9843-485c-9abc-024b1c901406" />
+        <classShapeMoniker Id="00ec26e7-ac51-426b-98b0-fc89ad9f836f" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
