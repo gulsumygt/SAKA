@@ -10,6 +10,11 @@ namespace SAKA.Service.Contract
     public interface IKPIService
     {
         [OperationContract]
-        int count();
+        decimal GetKpiValue();
+
+        //[OperationContract]
+        //int count();
+        //[OperationContract]
+        //string AddKpi();
     }
 }

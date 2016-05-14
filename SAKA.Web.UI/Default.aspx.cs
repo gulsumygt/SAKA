@@ -17,9 +17,14 @@ namespace SAKA.Web.UI
             var binding = new BasicHttpBinding();
             var channel = ChannelFactory<IKPIService>.CreateChannel(binding, adress);
 
-            var count = channel.count();
+            var list = channel.GetKpiValue();
+            Response.Write(list);
 
-            Response.Write(count);
+            //var count = channel.count();
+            //var kpiName = channel.AddKpi();
+
+            //Response.Write(count);
+            //Response.Write(kpiName);
 
 
         }
