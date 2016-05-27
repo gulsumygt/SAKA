@@ -122,7 +122,7 @@ namespace SAKA.Bussiness
 		
 		private bool _AKTIF;
 		
-		private string _PERIOD;
+		private char _PERIOD;
 		
 		private string _CODE;
 		
@@ -156,7 +156,7 @@ namespace SAKA.Bussiness
     partial void OnMODIFICATION_DATEChanged();
     partial void OnAKTIFChanging(bool value);
     partial void OnAKTIFChanged();
-    partial void OnPERIODChanging(string value);
+    partial void OnPERIODChanging(char value);
     partial void OnPERIODChanged();
     partial void OnCODEChanging(string value);
     partial void OnCODEChanged();
@@ -371,8 +371,8 @@ namespace SAKA.Bussiness
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PERIOD", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
-		public string PERIOD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PERIOD", DbType="VarChar(1) NOT NULL")]
+		public char PERIOD
 		{
 			get
 			{

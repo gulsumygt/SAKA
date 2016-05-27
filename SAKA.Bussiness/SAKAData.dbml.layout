@@ -20,14 +20,14 @@
         <elementListCompartment Id="d91a985c-411c-48ed-b541-1d105b23bc0f" absoluteBounds="3.515, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.19794840494792); (3.5 : 2.19794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.19794840494792); (3.5 : 2.19794840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SAKADataDataContext/KPI/KPI_KPI_CALCULATION_LOG" />
       <nodes>
         <classShapeMoniker Id="5b6efdde-9843-485c-9abc-024b1c901406" />
         <classShapeMoniker Id="2c241869-044d-4ca5-b8dd-ccbd46bf416f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.27965413411458); (3.5 : 4.27965413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.27965413411458); (3.5 : 4.27965413411458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SAKADataDataContext/KPI/KPI_KPI_VALUE" />
       <nodes>
         <classShapeMoniker Id="5b6efdde-9843-485c-9abc-024b1c901406" />

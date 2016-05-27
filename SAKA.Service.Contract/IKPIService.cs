@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using SAKA.DTO;
+
 namespace SAKA.Service.Contract
 {
     [ServiceContract]
     public interface IKPIService
     {
         [OperationContract]
-        decimal GetKpiValue();
+        ScoreCard[] GetScorecard();
+
+        //[OperationContract]
+        //decimal GetKpiValue();
 
         //[OperationContract]
         //int count();

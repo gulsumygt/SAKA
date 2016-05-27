@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using SAKA.Service.Contract;
 using SAKA.Bussiness;
+using SAKA.DTO;
 
 namespace SAKA.WCF.Service
 {
@@ -13,10 +14,14 @@ namespace SAKA.WCF.Service
     // NOTE: In order to launch WCF Test Client for testing this service, please select KPIService.svc or KPIService.svc.cs at the Solution Explorer and start debugging.
     public class KPIService : IKPIService
     {
-        public decimal GetKpiValue()
+        public ScoreCard[] GetScorecard()
         {
-            return Kpi.GetKpiValue();
+            return Kpi.GetScorecard();
         }
+        //public decimal GetKpiValue()
+        //{
+        //    return Kpi.GetKpiValue();
+        //}
         //public int count()
         //{
         //    return Kpi.count();

@@ -9,16 +9,70 @@ namespace SAKA.Bussiness
 {
    public  class Kpi
     {
-
-        public static decimal GetKpiValue()
+        public static ScoreCard[] GetScorecard()
         {
-            using(SAKADataDataContext dc=new SAKADataDataContext())
+            using (var dc = new SAKADataDataContext())
             {
-                var KpiValue = dc.KPI_VALUEs.Where(c => c.KPI.NAME == "ciro").Select(c => c.VALUE).First();
+                var listKpi = dc.KPIs.Where(kpi => kpi.KPI_VALUEs.Any()).Select(c => new
+                {
+                    c.ID,
+                    c.NAME,
+                    c.PERIOD,
+                    c.UNIT,
+                    c.TARGET,
+                    c.THRESHOLD,
+                    c.THRESHOLD_TYPE,
+                    c.DIRECTION
+                }).ToList();
 
-                return KpiValue;
+                var listDTO = new List<ScoreCard>();
+
+                foreach (var kpi in listKpi)
+                {
+                    var value = dc.KPI_VALUEs.Where(c => c.KPI_ID == kpi.ID).OrderByDescending(c => c.DATE).Select(c => new { c.VALUE, c.DATE }).First();
+
+                    var item = new ScoreCard();
+
+                    item.NAME = kpi.NAME;
+                    item.UNIT = kpi.UNIT;
+                    item.DATE = value.DATE;
+                    item.VALUE = value.VALUE;
+                    item.PERIOD = (Period)kpi.PERIOD;
+                    item.STATU = Kpi.CalculateStatu(kpi.THRESHOLD, kpi.THRESHOLD_TYPE, kpi.DIRECTION, kpi.TARGET, value.VALUE);
+
+                    listDTO.Add(item);
+                }
+
+                return listDTO.ToArray();
             }
         }
+        private static Statu CalculateStatu(decimal threshold, bool thresholdType, bool direction, decimal target, decimal value)
+        {
+            var sapma = thresholdType ? target * threshold / 100 : threshold;
+
+            if (target + sapma < value)
+            {
+                return direction ? Statu.Good : Statu.Bad;
+            }
+
+            if (target - sapma > value)
+            {
+                return direction ? Statu.Bad : Statu.Good;
+            }
+
+            return Statu.Notr;
+        }
+
+
+        //public static decimal GetKpiValue()
+        //{
+        //    using(SAKADataDataContext dc=new SAKADataDataContext())
+        //    {
+        //        var KpiValue = dc.KPI_VALUEs.Where(c => c.KPI.NAME == "ciro").Select(c => c.VALUE).First();
+
+        //        return KpiValue;
+        //    }
+        //}
 
 
         //public static string AddKpi()
@@ -62,7 +116,7 @@ namespace SAKA.Bussiness
         //    };
 
         //    list.AddRange(student);
-            
+
         //    //where metodu
         //    var sorgu1 = list.Where(c => c.SCORE >= 50).Select(c => c.NAME).ToList();
 
@@ -70,7 +124,7 @@ namespace SAKA.Bussiness
         //    /*var sorgu1 = (from x in list
         //                  where x.SCORE >= 50
         //                  select x.NAME).ToList(); */
-            
+
         //    foreach(var k in sorgu1)
         //    {
         //        Console.WriteLine(k);
