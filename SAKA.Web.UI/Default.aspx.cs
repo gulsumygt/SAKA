@@ -50,6 +50,7 @@ namespace SAKA.Web.UI
 
                 TableRow row1 = new TableRow();
                 TableCell row1cell1 = new TableCell();
+                row1.Width = Unit.Pixel(genislik);
                 row1cell1.Style.Add(HtmlTextWriterStyle.PaddingLeft, genislikValue + "px");
                 row1cell1.Text = x.VALUE + " " + x.UNIT + "<br/><img src=/image/triangle.png>";
                 row1.Cells.Add(row1cell1);
@@ -58,6 +59,7 @@ namespace SAKA.Web.UI
 
                 TableRow row2 = new TableRow();
                 TableCell row2cell1 = new TableCell();
+                row2.Width = Unit.Pixel(genislik);
                 row2cell1.Width = Unit.Pixel((int)genislikLeft);
                 row2cell1.Height = Unit.Pixel(yukseklik);
                 row2cell1.BackColor = x.DIRECTION == Direction.positive ? System.Drawing.Color.Green : System.Drawing.Color.Red;
@@ -79,6 +81,7 @@ namespace SAKA.Web.UI
                 table.Rows.Add(row2);
 
                 TableRow row3 = new TableRow();
+                row3.Width = Unit.Pixel(genislik);
                 TableCell row3cell1 = new TableCell();
                 row3cell1.HorizontalAlign = HorizontalAlign.Center;
                 row3cell1.Text = x.NAME;
