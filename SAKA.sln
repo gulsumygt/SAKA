@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAKA.Service.Contract", "SA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAKA.Web.UI", "SAKA.Web.UI\SAKA.Web.UI.csproj", "{965BF4EF-2E35-4453-ACCF-3E14D2D9EF3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAKA.WEBUI.MVC", "SAKA.WEBUI.MVC\SAKA.WEBUI.MVC.csproj", "{880F553F-D3D8-4612-8726-6A923953EE85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{965BF4EF-2E35-4453-ACCF-3E14D2D9EF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{965BF4EF-2E35-4453-ACCF-3E14D2D9EF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{965BF4EF-2E35-4453-ACCF-3E14D2D9EF3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880F553F-D3D8-4612-8726-6A923953EE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880F553F-D3D8-4612-8726-6A923953EE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880F553F-D3D8-4612-8726-6A923953EE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880F553F-D3D8-4612-8726-6A923953EE85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,6 +13,8 @@ namespace SAKA.Service.Contract
     {
         [OperationContract]
         ScoreCard[] GetScorecard();
+        [OperationContract]
+        DTO_Gauge[] GetGauge();
 
         //[OperationContract]
         //decimal GetKpiValue();

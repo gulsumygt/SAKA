@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+   
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container"> 
+        <table class="table table-striped table-hover">
+            <tr>
+                <th class="alert-success">AD</th>
+                <th class="alert-danger">TARİH</th>
+                <th class="alert-info">VALUE</th>
+                <th class="alert-warning">STATU</th>
+            </tr>
+            @foreach (var item in ViewBag.ScoreList)
+            {
+                <tr>
+                    <td>@item.NAME</td>
+                    <td>@item.PERIOD</td>
+                    <td>@item.VALUE   @item.UNIT</td>
+                    <td>@item.STATU</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <script src="~/Scripts/jquery-2.0.0.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

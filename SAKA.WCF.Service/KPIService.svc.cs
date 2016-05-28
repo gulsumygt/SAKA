@@ -18,6 +18,10 @@ namespace SAKA.WCF.Service
         {
             return Kpi.GetScorecard();
         }
+        public DTO_Gauge[] GetGauge()
+        {
+            return Kpi.GetGauge();
+        }
         //public decimal GetKpiValue()
         //{
         //    return Kpi.GetKpiValue();

@@ -46,6 +46,41 @@ namespace SAKA.Bussiness
                 return listDTO.ToArray();
             }
         }
+
+        public static DTO_Gauge[] GetGauge()
+        {
+            using(var dc=new SAKADataDataContext())
+            {
+                var listKpi = dc.KPIs.Where(c => c.KPI_VALUEs.Any()).Select(c => new
+                {
+                    c.NAME,
+                    c.ID,
+                    c.THRESHOLD,
+                    c.THRESHOLD_TYPE,
+                    c.DIRECTION,
+                    c.TARGET,
+                    c.UNIT
+                });
+
+                var listGauge = new List<DTO_Gauge>();
+                foreach(var dto in listKpi)
+                {
+                    var value = dc.KPI_VALUEs.Where(c => c.KPI_ID == dto.ID).Select(c => new { c.VALUE, c.DATE }).OrderByDescending(c => c.DATE).First();
+                    var item = new DTO_Gauge();
+                    var sapma = dto.THRESHOLD_TYPE ? dto.THRESHOLD : dto.TARGET * dto.THRESHOLD / 100;
+
+                    item.NAME = dto.NAME;
+                    item.UNIT = dto.UNIT;
+                    item.VALUE = value.VALUE;
+                    item.DIRECTION = dto.DIRECTION==true ? Direction.positive : Direction.negative;
+                    item.TARGET_MAX = dto.TARGET + sapma;
+                    item.TARGET_MIN = dto.TARGET - sapma;
+
+                    listGauge.Add(item);
+                }
+                return listGauge.ToArray();
+            }
+        }
         private static Statu CalculateStatu(decimal threshold, bool thresholdType, bool direction, decimal target, decimal value)
         {
             var sapma = thresholdType ? target * threshold / 100 : threshold;

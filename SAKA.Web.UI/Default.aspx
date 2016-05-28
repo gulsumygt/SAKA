@@ -34,6 +34,10 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
+
+        <asp:PlaceHolder ID="P1" runat="server"></asp:PlaceHolder>
+       
+     <asp:PlaceHolder 
     </form>
 </body>
 </html>
