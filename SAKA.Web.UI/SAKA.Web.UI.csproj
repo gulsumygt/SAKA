@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="image\arrow.png" />
     <Content Include="image\green.gif" />
     <Content Include="image\red.gif" />
     <Content Include="image\triangle.png" />

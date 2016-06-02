@@ -72,7 +72,7 @@ namespace SAKA.Bussiness
                     item.NAME = dto.NAME;
                     item.UNIT = dto.UNIT;
                     item.VALUE = value.VALUE;
-                    item.DIRECTION = dto.DIRECTION==true ? Direction.positive : Direction.negative;
+                    item.DIRECTION = dto.DIRECTION ? Direction.positive : Direction.negative;
                     item.TARGET_MAX = dto.TARGET + sapma;
                     item.TARGET_MIN = dto.TARGET - sapma;
 
@@ -83,7 +83,7 @@ namespace SAKA.Bussiness
         }
         private static Statu CalculateStatu(decimal threshold, bool thresholdType, bool direction, decimal target, decimal value)
         {
-            var sapma = thresholdType ? target * threshold / 100 : threshold;
+            var sapma = thresholdType ? threshold: target * threshold / 100;
 
             if (target + sapma < value)
             {
