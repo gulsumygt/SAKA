@@ -5,3 +5,9 @@ D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\SAKA.DTO.pdb
 D:\KPIprojesi\SAKA\SAKA.Bussiness\obj\Debug\SAKA.Bussiness.csprojResolveAssemblyReference.cache
 D:\KPIprojesi\SAKA\SAKA.Bussiness\obj\Debug\SAKA.Bussiness.dll
 D:\KPIprojesi\SAKA\SAKA.Bussiness\obj\Debug\SAKA.Bussiness.pdb
+D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\Microsoft.Practices.Unity.dll
+D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+D:\KPIprojesi\SAKA\SAKA.Bussiness\bin\Debug\Kardelen.Data.xml

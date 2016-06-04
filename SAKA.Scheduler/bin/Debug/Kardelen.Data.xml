@@ -1,0 +1,1020 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kardelen.Data</name>
+    </assembly>
+    <members>
+        <member name="T:Kardelen.Data.DbUtility">
+            <summary>
+            Veritabaný utility sýnýfý
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.Sort(System.Data.DataTable,System.String)">
+            <summary>
+            Verilen tabloyu, belirtilen sýralama ifadesine göre sýralar
+            </summary>
+            <param name="dt">Sýralanacak tablo</param>
+            <param name="sortExpression">Dýralama ifadesi</param>
+            <example>DbUtility.Sort(data, "AD DESC")</example>
+            <returns>Sýralanmýþ tablo</returns>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.ConvertToDataTable(System.Object[],System.String,System.Boolean)">
+            <summary>
+            Verilen diziyi, DataTable nesnesine çevirir
+            </summary>
+            <param name="data">Dizi</param>
+            <param name="columnName">Oluþacak DataTable'daki kolonun adý</param>
+            <param name="sort">DataTable belirtilen kolon adýna göre sýralansýn mý?</param>
+            <returns>Oluþan DataTable</returns>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetEmptyDataTable(System.String)">
+            <summary>
+            Verilen kolon listesini barýndýran boþ bir DataTable oluþturur.
+            </summary>
+            <param name="columnNames">Kolon adlarý (virgül ile ayrýlmýþ)</param>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetInsertCommandText(System.String,System.String)">
+            <summary>
+            Verilen tablo adý ve kolon adlarýna göre INSERT komutu oluþturur
+            </summary>
+            <param name="tableName">Tablo adý</param>
+            <param name="columnNames">Kolon adlarý (virgül ile ayrýlmýþ)</param>
+            <returns>Oluþan INSERT komutu</returns>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetUpdateCommandText(System.String,System.String,System.String)">
+            <summary>
+            Verilen tablo adý, kolon adlarý ve filtreye göre UPDATE komutu oluþturur
+            </summary>
+            <param name="tableName">Tablo adý</param>
+            <param name="columnNames">Kolon adlarý (virgül ile ayrýlmýþ)</param>
+            <param name="filter">UPDATE komutunda kullanýlacak filtre (WHERE)</param>
+            <returns>Oluþan UPDATE komutu</returns>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetNullableInteger(System.Object)">
+            <summary>
+            Verilen deðerin bir tamsayý olmamasý halinde (ör. DBNull) geriye null deðeri döndürür 
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetNullableChar(System.Object)">
+            <summary>
+            Verilen deðerin bir karakter olmamasý halinde (ör. DBNull) geriye null deðeri döndürür
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetNullableDouble(System.Object)">
+            <summary>
+            Verilen deðerin bir double olmamasý halinde (ör. DBNull) geriye null deðeri döndürür
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.GetNullableDateTime(System.Object)">
+            <summary>
+            Verilen deðerin bir DateTime olmamasý halinde (ör. DBNull) geriye null deðeri döndürür
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Kardelen.Data.DbUtility.ConvertNullToDBNull(System.Object)">
+            <summary>
+            Verilen deðer null ise geriye DBNull deðeri döndürür
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="T:Kardelen.Data.ExceptionBehaviour">
+            <summary>
+            Oluþan Exception karþýsýnda nasýl davranýlacak?
+            </summary>
+        </member>
+        <member name="F:Kardelen.Data.ExceptionBehaviour.None">
+            <summary>
+            Aykýrý durumu yakalar. (catch)
+            </summary>
+        </member>
+        <member name="F:Kardelen.Data.ExceptionBehaviour.Log">
+            <summary>
+            Aykýrý durumu yakalar ve loglar.
+            </summary>
+        </member>
+        <member name="F:Kardelen.Data.ExceptionBehaviour.Throw">
+            <summary>
+            Aykýrý durumu yakalamaz, fýrlatýr.
+            </summary>
+        </member>
+        <member name="T:Kardelen.Data.SQL">
+            <summary>
+            Veriye eriþim bloðu
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.SQL.#ctor">
+            <summary>
+            Yapýcý. Varsayýlan ("Default") baðlantý katarýný kullanýr.
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.SQL.#ctor(Kardelen.Data.ExceptionBehaviour)">
+            <summary>
+            Yapýcý. Varsayýlan ("Default") baðlantý katarýný kullanýr.
+            </summary>
+            <param name="exBehaviour">Oluþan Exception karþýsýnda nasýl davranýlacak? Varsayýlan deðer ExceptionBehaviour.Throw</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.#ctor(System.Configuration.ConnectionStringSettings)">
+            <summary>
+            Yapýcý
+            </summary>
+            <param name="cs">Baðlantý katarý özellikleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.#ctor(System.Configuration.ConnectionStringSettings,Kardelen.Data.ExceptionBehaviour)">
+            <summary>
+            Yapýcý
+            </summary>
+            <param name="cs">Baðlantý katarý özellikleri</param>
+            <param name="exBehaviour">Oluþan Exception karþýsýnda nasýl davranýlacak? Varsayýlan deðer ExceptionBehaviour.Throw</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.#ctor(System.String)">
+            <summary>
+            Yapýcý. Belirtilen baðlantý karatýný kullanýr
+            </summary>
+            <param name="name">Konfigürasyon dosyasýnda bulunan baðlantýnýn adý. Varsayýlan deðer Default</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.#ctor(System.String,Kardelen.Data.ExceptionBehaviour)">
+            <summary>
+            Yapýcý. Belirtilen baðlantý karatýný kullanýr
+            </summary>
+            <param name="name">Konfigürasyon dosyasýnda bulunan baðlantýnýn adý. Varsayýlan deðer Default</param>
+            <param name="exBehaviour">Oluþan Exception karþýsýnda nasýl davranýlacak? Varsayýlan deðer ExceptionBehaviour.Throw</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.GetCS(System.String)">
+            <summary>
+            Belirtilan baðlantý katarýna iliþkin baðlantý özelliklerini al.
+            </summary>
+            <param name="name">Konfigürasyon dosyasýnda bulunan baðlantýnýn adý.</param>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultConnectionSettings">
+            <summary>
+            Varsayýlan baðlantý katarý özellikleri. Konfigurasyon dosyasýnda bulunan "Default" isimli ConnectionString deðerini kullanýr
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.LogErrors">
+            <summary>
+            Hatalar loglansýn mý? (Get)
+            <para>Yapýcýnýn aldýðý ExceptionBehaviour deðerine bakarak bu özellik atanýr.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.ThrowException">
+            <summary>
+            Hatalar fýrlatýlsýn mý? (Get)
+            <para>Yapýcýnýn aldýðý ExceptionBehaviour deðerine bakarak bu özellik atanýr.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultInteger">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectInteger metodundan dönen Integer deðeri
+            <para>Varsayýlan olarak -1 deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultGuid">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectGuid metodundan dönen Guid deðeri
+            <para>Varsayýlan olarak Guid.Empty deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultString">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectString metodundan dönen String deðeri
+            <para>Varsayýlan olarak String.Empty deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultObject">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectObject metodundan dönen Object deðeri
+            <para>Varsayýlan olarak null deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultDataRow">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectDataRow metodundan dönen DataRow deðeri
+            <para>Varsayýlan olarak null deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultDataTable">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectDataTable metodundan dönen DataTable deðeri
+            <para>Varsayýlan olarak new DataTable() deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultDataSet">
+            <summary>
+            Kayýt bulunamamasý ya da sorun oluþmasý durumunda, SelectDataSet metodundan dönen DataSet deðeri
+            <para>Varsayýlan olarak new DataSet() deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.DefaultExecution">
+            <summary>
+            Sorun oluþmasý durumunda, Execute metodundan dönen deðer
+            <para>Varsayýlan olarak -1 deðerindedir.</para>
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.RecordFound">
+            <summary>
+            Kayýt bulundu mu?
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.RecordNotFound">
+            <summary>
+            Kayýt bulunamadý mý?
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.Exception">
+            <summary>
+            Oluþan hata
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.HasException">
+            <summary>
+            Hata oluþtu mu?
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.Database">
+            <summary>
+            Veritabaný servis nesnesi
+            </summary>
+        </member>
+        <member name="P:Kardelen.Data.SQL.ConnectionString">
+            <summary>
+            Kullanýlan baðlantý katarý özellikleri
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.SQL.AttachParameter(System.Data.Common.DbCommand,System.String,System.Object)">
+            <summary>
+            Komuta parametre ekler
+            </summary>
+            <param name="command">Parametre eklenecek komut</param>
+            <param name="name">Parametre adý</param>
+            <param name="value">Parametre deðeri</param>
+            <returns>Eklenen parametre</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.AttachParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType)">
+            <summary>
+            Komuta parametre ekler
+            </summary>
+            <param name="command">Parametre eklenecek komut</param>
+            <param name="name">Parametre adý</param>
+            <param name="dbType">Parametre tipi</param>
+            <returns>Eklenen parametre</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.AttachParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Object)">
+            <summary>
+            Komuta parametre ekler
+            </summary>
+            <param name="command">Parametre eklenecek komut</param>
+            <param name="name">Parametre adý</param>
+            <param name="dbType">Parametre tipi</param>
+            <param name="value">Parametre deðeri</param>
+            <returns>Eklenen parametre</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.CreateCommand">
+            <summary>
+            Mevcut baðlantý ayarlarýna göre bir parametre oluþtur
+            </summary>
+            <returns>Oluþturulan parametre</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.CreateCommand(System.String)">
+            <summary>
+            Mevcut baðlantý ayarlarýna göre bir parametre oluþtur
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+            <returns>Oluþturulan parametre</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.CreateCommand(System.Data.CommandType,System.String)">
+            <summary>
+            Mevcut baðlantý ayarlarýna göre bir parametre oluþtur
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+            <returns>Oluþturulan parametre</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.BeginTransaction">
+            <summary>
+            Bir hareket baþlatýr
+            </summary>
+            <returns>Baþlatýlan hareket</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Bir hareket baþlatýr
+            </summary>
+            <param name="isolationLevel">Ýzolasyon seviyesi</param>
+            <returns>Baþlatýlan hareket</returns>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectInteger(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan integer tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectGuid(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan Guid tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+            <param name="transaction">hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectString(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan string tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectObject(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan object tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataRow(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataRow tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komut tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="command">Komut</param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataTable(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataTable tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.Data.Common.DbCommand)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="command"></param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.SelectDataSet(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Çalýþtýrýlan komut sonucu, veritabanýndan DataSet tipinde bir deðer döndürür
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.String)">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.Data.Common.DbCommand)">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.Data.CommandType,System.String)">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.String,System.Object[])">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="command"></param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Execute(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            ExecuteNonQuery gibi çalýþýr
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.String)">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.Data.Common.DbCommand)">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.String,System.Object[])">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="command"></param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteDataSet(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Executes the commandText as a part of the given transaction and returns the results in a new System.Data.DataSet.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.Data.Common.DbCommand)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.String,System.Object[])">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="command"></param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteNonQuery(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType as a part of the given transaction and returns the number of rows affected.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.Data.Common.DbCommand)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.String,System.Object[])">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="command"></param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns an System.Data.IDataReader through which the result can be read. It is reponsibility of the caller the close the connection and reader when finished.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteReader(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.Data.Common.DbCommand)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.String,System.Object[])">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.Data.Common.DbCommand,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="command"></param>
+            <param name="transaction">Hareket</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandText">SQL cümleciði (Komut tipi bu cümleciðe bakýlarak otomatik olarak sezilir)</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.Data.Common.DbTransaction,System.Data.CommandType,System.String)">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="commandType">Komu tipi</param>
+            <param name="commandText">SQL cümleciði</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.ExecuteScalar(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            Executes the commandText interpreted as specified by the commandType within the given transaction and returns the first column of the first row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="transaction">Hareket</param>
+            <param name="storedProcedureName">Saklý yordam adý</param>
+            <param name="parameterValues">Saklý yordam parametre deðerleri</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Test">
+            <summary>
+            Veritabaný baðlantýsýný açýp kapayarak baðlantýyý test eder. Veritabanýna baðlanamamasý durumunda bir exception fýrlatýr
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.SQL.Log(System.Exception)">
+            <summary>
+            Hatayý loglar
+            </summary>
+            <param name="ex">Loglanacak hata</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.LogException(System.Exception)">
+            <summary>
+            Hatayý loglar
+            </summary>
+            <param name="ex">Loglanacak hata</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.LogException(System.Exception,System.String)">
+            <summary>
+            Hatayý loglar
+            </summary>
+            <param name="ex">Loglanacak hata</param>
+            <param name="data">Hata hakkýnda ek bilgi</param>
+        </member>
+        <member name="M:Kardelen.Data.SQL.LogException(System.String)">
+            <summary>
+            Hatayý loglar
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.SQL.LogException(System.String,System.String)">
+            <summary>
+            Hatayý loglar
+            </summary>
+        </member>
+        <member name="M:Kardelen.Data.SQL.LogException(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Hatayý loglar
+            </summary>
+        </member>
+    </members>
+</doc>

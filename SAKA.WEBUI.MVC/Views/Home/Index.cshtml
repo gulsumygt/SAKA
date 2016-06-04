@@ -1,4 +1,4 @@
-﻿
+﻿@model List<SAKA.WEBUI.MVC.Models.ScoreModel>
 @{
     Layout = null;
 }
@@ -14,23 +14,53 @@
 </head>
 <body>
     <div class="container"> 
-        <table class="table table-striped table-hover">
-            <tr>
-                <th class="alert-success">AD</th>
-                <th class="alert-danger">TARİH</th>
-                <th class="alert-info">VALUE</th>
-                <th class="alert-warning">STATU</th>
-            </tr>
-            @foreach (var item in ViewBag.ScoreList)
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th class="alert-success">AD</th>
+                        <th class="alert-danger">TARİH</th>
+                        <th class="alert-info">VALUE</th>
+                        <th class="alert-warning">STATU</th>
+                    </tr>
+                    @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.NAME</td>
-                    <td>@item.PERIOD</td>
-                    <td>@item.VALUE   @item.UNIT</td>
-                    <td>@item.STATU</td>
-                </tr>
-            }
-        </table>
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Date</td>
+                            <td>@item.Value</td>
+                            <td><img src="~/image/@item.Statu" alt="Alternate Text" /> </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="col-md-12">
+                @foreach (var item in ViewBag.GaugeList)
+                {
+                    <table width="800">
+                        <tr >
+                            <td colspan="3" style="padding-left:@(item.value+"px")">V</td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td style="background-color:@item.leftColor; width:@(item.leftSide+"px")"></td>
+                            <td style="background-color:yellow; width:@(item.middle+"px")"></td>
+                            <td style="background-color:@item.rightColor;width:@(item.rightSide+"px")"></td>
+                        </tr>
+                        <tr>
+                            <td>@item.leftSide </td>
+                            <td>@item.middle </td>
+                            <td>@item.rightSide </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">@item.Name</td>
+                        </tr>
+                    </table>
+                }
+              
+            </div>
+        </div>
+      
     </div>
     <script src="~/Scripts/jquery-2.0.0.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>

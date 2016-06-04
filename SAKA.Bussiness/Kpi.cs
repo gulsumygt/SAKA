@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SAKA.DTO;
+using Kardelen.Data;
 
 namespace SAKA.Bussiness
 {
-   public  class Kpi
+    public class Kpi
     {
         public static ScoreCard[] GetScorecard()
         {
@@ -49,7 +50,7 @@ namespace SAKA.Bussiness
 
         public static DTO_Gauge[] GetGauge()
         {
-            using(var dc=new SAKADataDataContext())
+            using (var dc = new SAKADataDataContext())
             {
                 var listKpi = dc.KPIs.Where(c => c.KPI_VALUEs.Any()).Select(c => new
                 {
@@ -63,7 +64,7 @@ namespace SAKA.Bussiness
                 });
 
                 var listGauge = new List<DTO_Gauge>();
-                foreach(var dto in listKpi)
+                foreach (var dto in listKpi)
                 {
                     var value = dc.KPI_VALUEs.Where(c => c.KPI_ID == dto.ID).Select(c => new { c.VALUE, c.DATE }).OrderByDescending(c => c.DATE).First();
                     var item = new DTO_Gauge();
@@ -81,9 +82,69 @@ namespace SAKA.Bussiness
                 return listGauge.ToArray();
             }
         }
+        public static void CalculateKpiValue()
+        {
+            using (var dc = new SAKADataDataContext())
+            {
+                var kpis = dc.KPIs.Where(c => c.CODE != null).Select(c => new
+                {
+                    c.ID,
+                    c.CONNSTRING,
+                    c.CODE,
+                    c.PERIOD,
+                    c.TARGET,
+                    c.THRESHOLD,
+                    c.THRESHOLD_TYPE
+                });
+
+                foreach (var kpi in kpis)
+                {
+                    var sql = new SQL(kpi.CONNSTRING);
+                    var SpNAme = "SP_" + kpi.CODE;
+                    var period = (Period)kpi.PERIOD;
+                    var date = default(DateTime);
+                    var kpiValue = default(decimal);
+
+                    if (period == Period.Year)
+                    {
+                        date = new DateTime(DateTime.Now.Year, 1, 1);
+                        kpiValue = Convert.ToDecimal(sql.SelectObject(SpNAme, date.Year));
+                    }
+                    else if (period == Period.Month)
+                    {
+                        date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                        kpiValue = Convert.ToDecimal(sql.SelectObject(SpNAme, date.Year, date.Month));
+                    }
+                    else
+                    {
+                        date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                        kpiValue = Convert.ToDecimal(sql.SelectObject(SpNAme, date.Year, date.Month, date.Day));
+                    }
+
+                    var itemValue = dc.KPI_VALUEs.FirstOrDefault(c => c.KPI_ID == kpi.ID && c.DATE == date);
+
+                    if (itemValue == null)
+                    {
+                        itemValue = new KPI_VALUE();
+
+                        itemValue.KPI_ID = kpi.ID;
+                        itemValue.DATE = date;
+
+                        dc.KPI_VALUEs.InsertOnSubmit(itemValue);
+                    }
+
+                    itemValue.TARGET = kpi.TARGET;
+                    itemValue.THRESHOLD = kpi.THRESHOLD;
+                    itemValue.THRESHOLD_TYPE = kpi.THRESHOLD_TYPE;
+                    itemValue.VALUE = kpiValue;
+
+                    dc.SubmitChanges();
+                }
+            }
+        }
         private static Statu CalculateStatu(decimal threshold, bool thresholdType, bool direction, decimal target, decimal value)
         {
-            var sapma = thresholdType ? threshold: target * threshold / 100;
+            var sapma = thresholdType ? threshold : target * threshold / 100;
 
             if (target + sapma < value)
             {
